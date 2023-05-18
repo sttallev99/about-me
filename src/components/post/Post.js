@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { format } from 'timeago.js';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-
+import { Link } from 'react-router-dom'
 import './post.css';
 
+
 const Post = ({post}) => {
-  console.log(post)
 
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
@@ -13,16 +14,15 @@ const Post = ({post}) => {
 
   useEffect(() => {
     const fetchData = async() => {
-      const res = await axios.get(`users/${post.userId}`);
-      // console.log(res.data)
+      const res = await axios.get(`/users?userId=${post.userId}`);
       setUser(res.data);
     }
     fetchData();
-  }, [])
+  }, [post.userId])
 
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
-  const likeClickHandler = (e) => {
+  const likeClickHandler = () => {
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked)
   }
@@ -32,9 +32,11 @@ const Post = ({post}) => {
       <div className='postWrapper'>
         <div className='postTop'>
             <div className='postLeft'>
-                <img className='postProfileImg' src={user?.profilePicture} alt='' />
+              <Link to={`/profile/${user.username}`}>
+                <img className='postProfileImg' src={user?.profilePicture || `${PF}persons/no_avatar.png`} alt='' />
+              </Link>
                 <span className='postUsername'>{user.username}</span>
-                <span className='postDate'>{post?.date}</span>
+                <span className='postDate'>{format(post.createdAt)}</span>
             </div>
             <div className='postRight'>
                 <MoreVertIcon />
