@@ -1,17 +1,21 @@
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+
+import './profile.css'
 import Topbar from '../../components/topbar/Topbar'
 import Sidebar from '../../components/sidebar/Sidebar';
 import Feed from '../../components/feed/Feed';
 import Rightbar from '../../components/rightbar/Rightbar';
-import './profile.css'
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+
 
 const Profile = () => {
     const [user, setUser] = useState({});
-    
+    const username = useParams().username;
+
     useEffect(() => {
         const fetchData = async () => {
-            const res = await axios.get('/users?username=stalev99');
+            const res = await axios.get('/users?username=' + username);
             console.log(res.data)
             setUser(res.data);
         }
@@ -36,7 +40,7 @@ const Profile = () => {
                         </div>
                     </div>
                     <div className='profileRightBottom'>
-                        <Feed username='stalev99' />
+                        <Feed username={username}/>
                         <Rightbar user={user}/>
                     </div>
                 </div>
