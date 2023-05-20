@@ -37,7 +37,9 @@ const Login = () => {
                   minLength='6'
                   required
                 />
-                <button className='loginButton'>{isFetching ? <CircularProgress sx={{ color: 'white'}}/> : 'Log In'}</button>
+                <button className='loginButton' disabled={isFetching}>
+                  {isFetching ? <CircularProgress sx={{ color: 'white'}}/> : 'Log In'}
+                </button>
                 <span className='loginForgot'>Forgot Password?</span>
                 <button className='loginRegisterButton'>Create a New Account</button>
             </form>
