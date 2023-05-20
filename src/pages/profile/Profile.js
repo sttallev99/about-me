@@ -32,7 +32,7 @@ const Profile = () => {
                     <div className='profileRightTop'>
                         <div className='profileCover'>
                             <img className='profileCoverPhoto' src={user.coverPicture || `${PF}persons/no_cover.jpg`} alt='' />
-                            <img className='profileUserImg' src={user.profilePicture || `${PF}persons/no_avatar.png`} alt='' />
+                            <img className='profileUserImg' src={user.profilePicture || `${PF}persons/no_avatar.jpg`} alt='' />
                         </div>
                         <div className='profileInfo'>
                             <h4 className='profileInfoName'>{user.username}</h4>
