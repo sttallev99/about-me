@@ -1,6 +1,6 @@
 import './register.css'
 
-const Login = () => {
+const Register = () => {
   return (
     <div className='login'>
       <div className='loginWrapper'>
@@ -25,4 +25,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Register
