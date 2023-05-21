@@ -11,7 +11,6 @@ import { AuthContext } from '../../context/AuthContext';
 const Share = () => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const { user } = useContext(AuthContext);
-  console.log(user)
   const desc = useRef();
 
   const [file, setFile] = useState(null);
@@ -23,15 +22,12 @@ const Share = () => {
       userId: user._id,
       description: desc.current.value
     }
-    console.log(newPost)
 
     if(file) {
       const data = new FormData();
       const fileName = Date.now() + file.name;
       data.append('name', fileName);
       data.append('file', file);
-      console.log(data.get('file'));
-      console.log(data.get('name'));
       newPost.img = fileName;
       try{
         await axios.post('/upload', data);
