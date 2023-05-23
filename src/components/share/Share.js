@@ -35,8 +35,9 @@ const Share = () => {
     }
 
     try{
-      await axios.post('/posts/create', newPost)
+      await axios.post('/posts/create', newPost);
     }catch(err) {}
+    window.location.reload(false);
   }
 
   return (

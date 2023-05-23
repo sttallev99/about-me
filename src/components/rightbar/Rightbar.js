@@ -1,10 +1,15 @@
+// import { useState, useEffect } from 'react';
+// import axios from 'axios';
+
 import './rigthbar.css';
+import Online from '../online/Online'
 import { Users } from '../../dummyData';
-import Online from '../online/Online';
+import { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
+import { AuthContext } from '../../context/AuthContext';
 
 const Rightbar = ({ user }) => {
-
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER
 
   const HomeRightbar = () => {
     return (
@@ -23,6 +28,42 @@ const Rightbar = ({ user }) => {
   }
 
   const ProfileRightbar = () => {
+    const [friends, setFriends] = useState(undefined);
+
+    useEffect(() => {
+      const getFriends = async () => {
+        const frindsList = await axios.get('/users/friends/' + user._id);
+        setFriends(frindsList.data);
+      }
+      getFriends();
+    }, [user._id]);
+
+    const UserFrinds = ({friends}) => {
+      console.log(friends)
+      return (
+        <>
+          <h4 className='rightbarTitle'>User Friends</h4>
+          <div className='rightbarFollowings'>
+            {friends.map(frind => 
+              <>
+                <div className='rightbarFollowing'>
+                  <img className='rightbarFollowingImg' 
+                  src={
+                    frind.profilePicture 
+                      ? PF + frind.profilePicture 
+                      : PF + 'persons/no_avatar.jpg'
+                  } 
+                  alt='' />
+                  <span className='rightbarFollowingName'>{frind.username}</span>
+                </div>
+              </>
+            )}
+          </div>
+        </>
+      )
+    }
+
+
     return (
       <>
         <h4 className='rightbarTitle'>User information</h4>
@@ -37,36 +78,17 @@ const Rightbar = ({ user }) => {
           </div>
           <div className='rightbarInfoItem'>
             <span className='rightbarInfoKey'>Relationship:</span>
-            <span className='rightbarInfoValue'>{user.relationship === 1 ? 'Single' : user.relationship === 2 ? 'In a relationship' : 'Married'}</span>
+            <span className='rightbarInfoValue'>
+              {
+                user.relationship === 1
+                  ? 'Single' : user.relationship === 2
+                    ? 'In a relationship'
+                    : 'Married'
+              }
+            </span>
           </div>
         </div>
-        <h4 className='rightbarTitle'>User Friends</h4>
-        <div className='rightbarFollowings'>
-          <div className='rightbarFollowing'>
-            <img className='rightbarFollowingImg' src={`${PF}persons/1.jpg`} alt='' />
-            <span className='rightbarFollowingName'>Georgi Stalev</span>
-          </div>
-          <div className='rightbarFollowing'>
-            <img className='rightbarFollowingImg' src={`${PF}persons/2.jpg`} alt='' />
-            <span className='rightbarFollowingName'>Georgi Stalev</span>
-          </div>
-          <div className='rightbarFollowing'>
-            <img className='rightbarFollowingImg' src={`${PF}persons/3.jpg`} alt='' />
-            <span className='rightbarFollowingName'>Georgi Stalev</span>
-          </div>
-          <div className='rightbarFollowing'>
-            <img className='rightbarFollowingImg' src={`${PF}persons/4.jpg`} alt='' />
-            <span className='rightbarFollowingName'>Georgi Stalev</span>
-          </div>
-          <div className='rightbarFollowing'>
-            <img className='rightbarFollowingImg' src={`${PF}persons/5.jpg`} alt='' />
-            <span className='rightbarFollowingName'>Georgi Stalev</span>
-          </div>
-          <div className='rightbarFollowing'>
-            <img className='rightbarFollowingImg' src={`${PF}persons/1.jpg`} alt='' />
-            <span className='rightbarFollowingName'>Georgi Stalev</span>
-          </div>
-        </div>
+        {friends && <UserFrinds friends={friends}/>}
       </>
     )
   }
@@ -74,7 +96,7 @@ const Rightbar = ({ user }) => {
   return (
     <div className='rightbar'>
       <div className='rightbarWrapper'>
-        { user ? <ProfileRightbar /> : <HomeRightbar /> }
+        { user ? <ProfileRightbar/> : <HomeRightbar /> }
       </div>
     </div>
   )

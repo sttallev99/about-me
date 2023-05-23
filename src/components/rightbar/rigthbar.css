@@ -72,5 +72,11 @@
     object-fit: cover;
 }
 
+.rightbarFollowingName {
+    margin: 0 auto;
+    padding: 10px;
+    font-weight: 300;
+}
+
 
 
