@@ -1,12 +1,12 @@
 // import { useState, useEffect } from 'react';
 // import axios from 'axios';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import './rigthbar.css';
 import Online from '../online/Online'
 import { Users } from '../../dummyData';
-import { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
-import { AuthContext } from '../../context/AuthContext';
 
 const Rightbar = ({ user }) => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER
@@ -36,28 +36,31 @@ const Rightbar = ({ user }) => {
         setFriends(frindsList.data);
       }
       getFriends();
-    }, [user._id]);
+    }, [user]);
+
+    const FriendCard = ({friend}) => {
+      return (
+        <Link to={`/profile/${friend.username}`} style={{ textDecoration: 'none' }}>
+          <div key={friend._id} className='rightbarFollowing'>
+            <img className='rightbarFollowingImg'
+              src={
+                friend.profilePicture
+                  ? PF + friend.profilePicture
+                  : PF + 'persons/no_avatar.jpg'
+              }
+              alt='' />
+            <span className='rightbarFollowingName'>{friend.username}</span>
+          </div>
+        </Link>
+      )
+    }
 
     const UserFrinds = ({friends}) => {
-      console.log(friends)
       return (
         <>
           <h4 className='rightbarTitle'>User Friends</h4>
           <div className='rightbarFollowings'>
-            {friends.map(frind => 
-              <>
-                <div className='rightbarFollowing'>
-                  <img className='rightbarFollowingImg' 
-                  src={
-                    frind.profilePicture 
-                      ? PF + frind.profilePicture 
-                      : PF + 'persons/no_avatar.jpg'
-                  } 
-                  alt='' />
-                  <span className='rightbarFollowingName'>{frind.username}</span>
-                </div>
-              </>
-            )}
+            {friends.map(friend => <FriendCard friend={friend} key={friend._id}/>)}
           </div>
         </>
       )
