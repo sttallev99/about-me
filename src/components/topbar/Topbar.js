@@ -5,6 +5,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import ChatIcon from '@mui/icons-material/Chat';
 
 import {AuthContext} from '../../context/AuthContext';
+import UserMenu from './UserMenu';
 
 
 import './topbar.css'
@@ -45,7 +46,7 @@ const Topbar = () => {
                     <span className='topbarIconBadge'>2</span>
                 </div>
             </div>
-            <Link to={`/profile/${user.username}`}>
+            {/* <Link to={`/profile/${user.username}`}>
                 <img 
                     src={
                         user.profilePicture
@@ -55,7 +56,8 @@ const Topbar = () => {
                     alt='' 
                     className='topbarImg' 
                 />
-            </Link>
+            </Link> */}
+            <UserMenu className='topbarImg' user={user}/>
         </div>
     </div>
   )
