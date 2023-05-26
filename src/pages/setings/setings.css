@@ -1,0 +1,151 @@
+.mainProfileSettingWrapper{
+    margin: 0 auto;
+    display: flex;
+    background-color: #f1f1f1;
+    height: calc(100vh - 60px);
+}
+
+.profileSettingsWrapper{
+    flex-direction: column;
+    flex: 6;
+    width: 70%;
+    margin: auto 20px;
+    background-color: white;
+    padding-bottom: 40px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 15px -1px rgba(0,0,0,0.24); 
+    box-shadow: 0px 0px 15px -1px rgba(0,0,0,0.24);
+}
+
+.profileSetingsTitleWrapper{
+    display: flex;
+    width: 90%;
+    margin: auto;
+    padding: 30px 0;
+    font-weight: 500;
+    color: #1877f2;
+    letter-spacing: 1px;
+    font-size: 25px;
+}
+
+.profileSettingsActions{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    margin: auto;
+}
+
+.profileSettingsAction{
+    border: none;
+    margin-right: 10px;
+    padding: 7px 15px;
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.profileSettingsAction:hover{
+    background-color: #1877f2;
+    color: white;
+    transition: ease-in-out 0.3s;
+}
+
+.profileSettingsFormWrapper{
+    display: flex;
+    flex-direction: row;
+    border: 2px solid #f1f1f1;
+    border-radius: 3px;
+    width: 90%;
+    margin: auto;
+}
+
+.formLeft{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    flex: 4;
+    padding: 10px;
+    /* border-right: 1px solid black; */
+}
+
+.profileSettingsCoverImage{
+    height: 250px;
+    width: 600px;
+    border-radius: 5px;
+}
+
+.profileSettingsAvatarImage {
+    position: absolute;
+    width: 150px;
+    bottom: 60px;
+    border: 4px solid white;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.profileSettingsChangeImages{
+    margin-top: 100px;
+}
+
+.profileSettingsChangeImageButton{
+    border: none;
+    background-color: white;
+    border: 1px solid #1877f2;
+    margin-right: 10px;
+    padding:  10px 15px;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 15px;
+    color: #1877f2;
+    cursor: pointer;
+}
+
+.profileSettingsChangeImageButton:hover{
+    background-color: #1877f2;
+    color: white;
+    transition: ease-in-out 0.3s;
+}
+
+.formRight{
+    display: flex;
+    flex: 3;
+    padding: 10px;
+}
+
+.formRightFields{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.formRightField{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    width: 80%;
+}
+
+.formRightLabel{
+    display: flex;
+    flex: 1;
+    margin-right: 30px;
+    justify-content: right;
+    font-weight: 300;
+    font-size: 16px;
+}
+
+.formRightInput{
+    display: flex;
+    flex: 2;
+    border: none;
+    border-bottom: 2px solid #f1f1f1;
+    height: 30px;
+}
+
+
