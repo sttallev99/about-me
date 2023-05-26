@@ -1,7 +1,8 @@
-import React from 'react'
+import React from 'react' 
+import CloseIcon from '@mui/icons-material/Close';
+
 import Sidebar from '../../components/sidebar/Sidebar';
 import Topbar from '../../components/topbar/Topbar';
-import Rightbar from '../../components/rightbar/Rightbar';
 
 import './setings.css';
 
@@ -13,6 +14,7 @@ const Setings = () => {
           <div className='mainProfileSettingWrapper'>
               <Sidebar />
               <div className='profileSettingsWrapper'>
+                <span className='profileSettingsCloseIcon'><CloseIcon /></span>
                   <div className='profileSetingsTitleWrapper'>
                       <p className='profileSettingsTitle'>Account Settings</p>
                   </div>
@@ -60,12 +62,11 @@ const Setings = () => {
                                   <label className='formRightLabel' htmlFor='repeatPassword'>re-password</label>
                                   <input className='formRightInput' type='password' name='repeatPassword' placeholder='repeat password' value='' />
                               </div>
+                              <button className='profileSettingsSubmitButton'>Submit</button>
                           </div>
                       </div>
                   </form>
-                  {/* </div> */}
               </div>
-              {/* <Rightbar /> */}
           </div>
       </>
   )
