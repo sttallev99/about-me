@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react' 
 import CloseIcon from '@mui/icons-material/Close';
+import { AuthContext } from '../../context/AuthContext';
 
 import Sidebar from '../../components/sidebar/Sidebar';
 import Topbar from '../../components/topbar/Topbar';
-
 import './setings.css';
-import { AuthContext } from '../../context/AuthContext';
+import { Link } from 'react-router-dom';
 
 const Setings = () => {
     const [coverImg, setCoverImg] = useState(undefined);
@@ -14,16 +14,15 @@ const Setings = () => {
     console.log(user)
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
-    // const showCoverImg = (e) => {
-    //     console.log(e.target.files[0])
-    // }
   return (
       <>
           <Topbar />
           <div className='mainProfileSettingWrapper'>
               <Sidebar />
               <div className='profileSettingsWrapper'>
-                <span className='profileSettingsCloseIcon'><CloseIcon /></span>
+                    <Link to={`/profile/${user.username}`} className='profileSettingsCloseIcon'>
+                        <CloseIcon style={{ color: 'white'}}/>
+                    </Link>
                   <div className='profileSetingsTitleWrapper'>
                       <p className='profileSettingsTitle'>Account Settings</p>
                   </div>
@@ -31,7 +30,6 @@ const Setings = () => {
                       <button className='profileSettingsAction'>Profile</button>
                       <button className='profileSettingsAction'>Friends</button>
                   </div>
-                  {/* <div className='profileSettingsFormWrapper'> */}
                   <form className='profileSettingsFormWrapper' onSubmit={(e) => {
                     e.preventDefault();
                     console.log('clicked')
