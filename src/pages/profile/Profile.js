@@ -30,8 +30,8 @@ const Profile = () => {
             <div className='profileRight'>
                 <div className='profileRightTop'>
                     <div className='profileCover'>
-                        <img className='profileCoverPhoto' src={user.coverPicture || `${PF}persons/no_cover.jpg`} alt='' />
-                        <img className='profileUserImg' src={user.profilePicture || `${PF}persons/no_avatar.jpg`} alt='' />
+                        <img className='profileCoverPhoto' src={PF+user.coverPicture || `${PF}persons/no_cover.jpg`} alt='' />
+                        <img className='profileUserImg' src={PF+user.profilePicture || `${PF}persons/no_avatar.jpg`} alt='' />
                     </div>
                     <div className='profileInfo'>
                         <h4 className='profileInfoName'>{user.username}</h4>

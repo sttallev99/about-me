@@ -92,7 +92,7 @@ export default function UserMenu() {
             </MenuItem>
         </Link>
         <Divider />
-        <Link to='/profile/update/1' style={{textDecoration: 'none', color: 'black'}}>
+        <Link to={`/profile/update/${user.username}`} style={{textDecoration: 'none', color: 'black'}}>
           <MenuItem onClick={handleClose}>
             <ListItemIcon>
               <Settings fontSize="small" />

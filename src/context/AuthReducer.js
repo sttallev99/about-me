@@ -34,6 +34,29 @@ const AuthReducer = (state, action) => {
                     followings: state.user.followings.filter((following) => following !== action.payload)
                 }
             };
+        case 'EDIT_USER_START': {
+
+            return {
+                ...state,
+                isFetching: true
+            }
+        }
+        case 'EDIT_USER_SUCCESS': {
+            console.log(state)
+            console.log(action);
+            return {
+                ...state,
+                user: action.payload,
+                isFetching: false
+            }
+        }
+        case 'EDIT_USER_FAIL': {
+            return {
+                ...state,
+                isFetching: false,
+                error: action.payload
+            }
+        }
         default: return state
     }
 };
