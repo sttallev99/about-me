@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import CloseIcon from '@mui/icons-material/Close';
 import { AuthContext } from '../../context/AuthContext';
 import { useFormik } from 'formik';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Sidebar from '../../components/sidebar/Sidebar';
 import Topbar from '../../components/topbar/Topbar';
@@ -11,7 +11,6 @@ import { editUserCall } from '../../apiCalls'
 import axios from 'axios';
 
 const Setings = () => {
-    const navigate = useNavigate();
     const [coverImg, setCoverImg] = useState(undefined);
     const [userImg, setUserImg] = useState(undefined);
     const {user, dispatch} = useContext(AuthContext);
@@ -73,7 +72,7 @@ const Setings = () => {
                                 className='profileSettingsCoverImage' 
                                 src={ coverImg 
                                         ? URL.createObjectURL(coverImg)
-                                        : (user.profilePicture ? PF + user.profilePicture : `${PF}persons/no_cover.jpg`)
+                                        : (user.profilePicture ? PF + user.coverPicture : `${PF}persons/no_cover.jpg`)
                                     } 
                                 alt='' 
                             />

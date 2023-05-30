@@ -6,18 +6,18 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
-import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
-import { Link } from 'react-router-dom';
+import { Link, redirect } from 'react-router-dom';
+
 import { AuthContext } from '../../context/AuthContext';
+import { logout } from '../../context/AuthActions';
 
 export default function UserMenu() {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const {user} = React.useContext(AuthContext);
+  const {user, dispatch} = React.useContext(AuthContext);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -100,7 +100,12 @@ export default function UserMenu() {
             Settings
           </MenuItem>
         </Link>
-        <MenuItem onClick={handleClose}>
+        <MenuItem 
+          onClick={() => {
+            dispatch(logout());
+            redirect('/')
+          }}
+        >
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
